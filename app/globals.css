@@ -1,26 +1,87 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  Palette - a terminal reading of open water: neutral near-black/near-white
+  surfaces (no navy tint) with a phosphor-green readout accent and an amber
+  secondary, the way old green- and amber-phosphor terminals differed by
+  model. --tide and --lantern each swap to a darker shade in light mode
+  so they hold WCAG AA contrast against the near-white background.
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --tide: #157a4c;
+  --lantern: #92400e;
+}
+
+.dark {
+  --tide: #39e67d;
+  --lantern: #ffb454;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-sora);
+  --font-mono: var(--font-plex-mono);
+
+  --color-ink: #0a0c0a;
+  --color-foam: #f3f4ef;
+  --color-tide: var(--tide);
+  --color-lantern: var(--lantern);
+  --color-mist: #b6b7ae;
+  --color-slate: #43433c;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-tide) 35%, transparent);
+}
+
+/* Smooth day/night switch - elements with their own transition-* utility
+   (hover states, expand/collapse) keep their own timing via specificity. */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 0.35s;
+  transition-timing-function: ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}
+
+/* Waves background canvas - see components/Waves.tsx */
+.waves {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.waves-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
 }

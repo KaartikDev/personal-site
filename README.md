@@ -1,36 +1,209 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Waves Portfolio Template
 
-## Getting Started
+A config-driven developer portfolio built with Next.js 16, React 19, and Tailwind CSS 4, set against an interactive animated wave background (ported from [reactbits.dev/backgrounds/waves](https://reactbits.dev/backgrounds/waves)).
 
-First, run the development server:
+The visual identity leans into the background rather than covering it up: a terminal-flavored read of open water at night, with a wonky serif display face for headlines, a mono "readout" utility face for labels and data, and no card chrome anywhere - no boxes, no pill badges, no bordered panels. Content sits directly on the waves in a single left-anchored column, organized purely by big type and hairline rules, so the water stays visible on every screen.
+
+The goal is simple: edit one config file, ship a polished personal site, and avoid rewriting components every time your work history, projects, or links change.
+
+## Features
+
+- Config-first content in `config/config.ts`
+- Full-screen animated wave background that reacts to your cursor (or touch on mobile), left fully visible with no cards or panels laid over it
+- Sections organized with large display-type headings and hairline rules instead of boxes, badges, or chips
+- Light and dark theme toggle (a plain `[DAY / NIGHT]` text switch) with local preference persistence; wave color adapts automatically
+- Rich bio formatting with inline emphasis and a drop-cap opening line
+- Social links that hide automatically when left blank
+- Grouped experience log with expandable role details
+- Project list with live and source links
+- Metadata generated from your config content
+
+## Tech Stack
+
+- Next.js 16 App Router
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Plain HTML5 canvas for the wave background (no WebGL/graphics libraries required)
+- Fraunces, Sora, and IBM Plex Mono via `next/font/google`
+- pnpm for package management
+
+## Requirements
+
+- Node.js 20.9 or newer
+- pnpm
+
+## Quick Start
+
+Install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Start the development server:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open the local URL printed in your terminal. Next usually starts on `http://localhost:3000`, but it may choose another port if 3000 is already in use.
 
-## Learn More
+Build for production:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Start the production server:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+pnpm start
+```
 
-## Deploy on Vercel
+## Customization
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Most edits happen in [config/config.ts](config/config.ts). See that file's comments for every field.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Identity
+
+Update your name:
+
+```ts
+name: "Your Name",
+```
+
+This is used in the hero heading and the page metadata.
+
+### Bio
+
+Write your bio as an array of paragraphs:
+
+```ts
+bio: [
+  "I'm a software engineer who builds products with purpose.",
+  "Outside work, I like [[music]], design, and learning new tools.",
+],
+```
+
+Formatting supported in bio text:
+
+- `[[text]]` renders with wider letter spacing.
+
+The opening line of the first paragraph gets a large drop-cap treatment automatically.
+
+### Social Links
+
+Set any social URL to an empty string to hide that button:
+
+```ts
+social: {
+  twitter: "https://twitter.com/yourusername",
+  github: "https://github.com/yourusername",
+  resume: "",
+  discord: "",
+  linkedin: "https://linkedin.com/in/yourusername",
+},
+```
+
+### Experience
+
+Experience is grouped by company under the "Experiences" heading. Each company can contain multiple roles:
+
+```ts
+experience: [
+  {
+    company: "Company Name",
+    photo: "/companies/company.png",
+    roles: [
+      {
+        title: "Software Engineer",
+        type: "Full-Time",
+        location: "Remote",
+        startDate: "Mar 2025",
+        endDate: "Present",
+        bullets: ["Built and shipped production features."],
+        tech: ["Next.js", "TypeScript", "Postgres"],
+      },
+    ],
+  },
+],
+```
+
+Set `photo` to an image path in `public/` for a small circular logo next to the company name, or leave it blank to show just the name.
+
+### Projects
+
+Projects support title, tagline, tech list, and optional links, under the "Projects" heading:
+
+```ts
+projects: [
+  {
+    title: "Project Name",
+    tagline: "A short, specific line about what it does",
+    tech: ["Next.js", "TypeScript", "NeonDB"],
+    liveUrl: "https://example.com",
+    githubUrl: "https://github.com/yourusername/project",
+  },
+],
+```
+
+Leave `liveUrl` or `githubUrl` blank to hide that link.
+
+### The Wave Background and Palette
+
+The waves and the color palette are not part of `config/config.ts` since they are visual, not content.
+
+- To tune the wave effect, edit the props passed to `<Waves />` in [components/WavesBackground.tsx](components/WavesBackground.tsx): `waveAmpX` / `waveAmpY` control how tall the waves are, `waveSpeedX` / `waveSpeedY` control drift speed, `xGap` / `yGap` control line density, and `maxCursorMove` controls how far lines are pushed by your cursor.
+- To change the color palette or fonts, edit the tokens in [app/globals.css](app/globals.css) (`--color-ink`, `--color-foam`, `--color-tide`, `--color-lantern`, `--color-mist`, `--color-slate`) and the font setup in [app/layout.tsx](app/layout.tsx).
+
+## Project Structure
+
+```txt
+app/
+  layout.tsx            Root layout, font setup, metadata, theme boot script, mounts the wave background
+  page.tsx               Home page composition, the left-anchored content column
+  globals.css             Color/type tokens and wave canvas layout rules
+components/
+  Waves.tsx               The reactbits wave background, ported to TypeScript
+  WavesBackground.tsx      Full-viewport wrapper that adapts wave color to the active theme
+  SectionHeading.tsx       Big display-type heading + hairline rule, used at the top of every section
+  Bio.tsx                  Bio and social links
+  Experience.tsx           Role list and expand/collapse controls
+  Footer.tsx               Footer links and copyright
+  PageHeader.tsx           Hero name treatment
+  Projects.tsx             Project list
+  ThemeToggle.tsx          Plain-text [DAY / NIGHT] theme switch
+config/
+  config.ts                Main content configuration
+lib/
+  use-dark-mode.ts          Shared hook that tracks the `dark` class on <html>
+```
+
+## Scripts
+
+| Command | Description |
+| --- | --- |
+| `pnpm dev` | Start the local development server |
+| `pnpm build` | Build the site for production |
+| `pnpm start` | Run the production server |
+| `pnpm lint` | Run ESLint |
+
+## Deployment
+
+The easiest deployment target is Vercel:
+
+1. Push the repository to GitHub.
+2. Import it into Vercel.
+3. Keep the default Next.js settings.
+4. Deploy.
+
+Other platforms that support Next.js can work too, as long as they use Node.js 20.9 or newer and run `pnpm build`.
+
+## Notes For Agent-Assisted Edits
+
+This project includes [AGENTS.md](AGENTS.md). It asks coding agents to read the local Next.js documentation in `node_modules/next/dist/docs/` before making framework-related changes, because this project uses a newer Next.js version with breaking changes.
+
+---
+
+Designed by [Bruin Software Engineers](https://bseatucla.com).
