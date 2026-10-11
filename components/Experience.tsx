@@ -31,7 +31,16 @@ export function Experience() {
                 />
               )}
               <h3 className="font-display text-xl font-medium text-ink dark:text-foam">
-                {company.company}
+                {company.website ? (
+                  <a
+                    href={company.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline decoration-tide/30 underline-offset-4 hover:decoration-tide"
+                  >
+                    {company.company} ↗
+                  </a>
+                ) : company.company}
               </h3>
             </div>
 
@@ -46,6 +55,9 @@ export function Experience() {
                     <button
                       type="button"
                       onClick={() => hasDetails && toggle(ci, ri)}
+                      aria-expanded={hasDetails ? open : undefined}
+                      aria-label={hasDetails ? `${role.title} at ${company.company} details` : undefined}
+                      disabled={!hasDetails}
                       className={`block w-full text-left ${hasDetails ? "cursor-pointer" : "cursor-default"}`}
                     >
                       <p className="font-medium text-ink dark:text-foam">{role.title}</p>
@@ -77,6 +89,19 @@ export function Experience() {
                                     className="text-sm leading-6 text-slate dark:text-mist"
                                   >
                                     – {bullet}
+                                    {bi === 0 && "impactReportUrl" in company && company.impactReportUrl && (
+                                      <>
+                                        {" "}
+                                        <a
+                                          href={company.impactReportUrl}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className="underline decoration-tide/40 underline-offset-4 hover:text-tide"
+                                        >
+                                          View impact report here
+                                        </a>
+                                      </>
+                                    )}
                                   </li>
                                 ))}
                               </ul>
@@ -85,6 +110,21 @@ export function Experience() {
                               <p className="font-mono text-xs text-tide">
                                 {role.tech.join("  /  ")}
                               </p>
+                            )}
+                            {company.links.length > 0 && (
+                              <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs tracking-wide">
+                                {company.links.map((link) => (
+                                  <a
+                                    key={link.url}
+                                    href={link.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-slate underline decoration-tide/30 underline-offset-4 hover:text-tide dark:text-mist"
+                                  >
+                                    {link.label} ↗
+                                  </a>
+                                ))}
+                              </div>
                             )}
                           </div>
                         </div>

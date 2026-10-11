@@ -62,10 +62,20 @@ function ResumeIcon({ className }: { className?: string }) {
   );
 }
 
+function EmailIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="2" y="4" width="20" height="16" rx="2" />
+      <path d="m3 6 9 7 9-7" />
+    </svg>
+  );
+}
+
 export function Bio() {
   const { bio, cta, social } = config;
 
   const socialLinks = [
+    { key: "email",    label: "Email",    href: social.email,    Icon: EmailIcon  },
     { key: "twitter",  label: "Twitter",  href: social.twitter,  Icon: TwitterIcon  },
     { key: "github",   label: "GitHub",   href: social.github,   Icon: GitHubIcon   },
     { key: "resume",   label: "Resume",   href: social.resume,   Icon: ResumeIcon   },
@@ -83,7 +93,15 @@ export function Bio() {
           </p>
         ))}
 
-        <p className="pt-2 font-display text-lg italic text-ink dark:text-foam">{cta}</p>
+        {cta && (
+          <p className="pt-2 font-display text-lg italic text-ink dark:text-foam">
+            {social.email ? (
+              <a href={social.email} className="underline decoration-tide/40 underline-offset-4 hover:decoration-tide">
+                {cta}
+              </a>
+            ) : cta}
+          </p>
+        )}
 
         {socialLinks.length > 0 && (
           <div className="flex flex-wrap gap-x-6 gap-y-2 pt-3 font-mono text-xs tracking-wide">
@@ -91,8 +109,8 @@ export function Bio() {
               <a
                 key={key}
                 href={href}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={href.startsWith("mailto:") || href.startsWith("/") ? undefined : "_blank"}
+                rel={href.startsWith("mailto:") || href.startsWith("/") ? undefined : "noopener noreferrer"}
                 className="inline-flex items-center gap-1.5 text-slate underline decoration-tide/30 underline-offset-4 transition-colors hover:text-tide dark:text-mist"
               >
                 <Icon className="h-3 w-3" />

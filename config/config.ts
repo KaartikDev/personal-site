@@ -1,107 +1,111 @@
-// ======================================================
-// SITE CONFIG - Edit everything in this file!
-// ======================================================
-// This is the only file you need to touch. Fill in your
-// personal info below, and the site updates automatically.
-
 export const config = {
-
-  // -- Identity
-  name: "Your Name",
-
-  // -- Bio -----
-  // Write your bio as an array of paragraphs.
-  // [[text]] --> spaced-out letter tracking (e.g. [[hello]] renders as h e l l o)
+  name: "Kaartik Tejwani",
   bio: [
-    "I'm a software engineer who builds products with a designer's eye for detail.",
-    "Over the past few months I've shipped 5+ freelance projects, working with clients across different industries.",
-    "Beyond work, I like to play badminton and watch soccer.",
+    "I'm a CS student at UCLA who loves building things. I started Bruin Software Engineers to help students learn through projects and connect with working engineers. Recently, my team won two challenges at LA Hacks (1,000+ hackers) with Accent, an accessibility assistant for elderly users and non-English speakers built with Gemini 3.1.",
   ],
-
-  // CTA line shown after your bio
-  cta: "Got a project in mind? Let's bring it to life!",
-
-  // -- Social Links
-  // Leave a field as "" to hide that button.
+  cta: "Email me if you'd like to work together.",
   social: {
-    twitter:  "https://twitter.com/yourusername",
-    github:   "https://github.com/yourusername",
-    resume:   "",   // Link to your resume (PDF, Google Drive, etc.)
-    discord:  "",   // Discord profile URL or server invite link
-    linkedin: "https://linkedin.com/in/yourusername",
+    email: "mailto:ktejwani81@ucla.edu",
+    twitter: "",
+    github: "https://github.com/KaartikDev",
+    resume: "/Kaartik_Tejwani_Resume.pdf",
+    discord: "",
+    linkedin: "https://www.linkedin.com/in/kaartik-tejwani/",
   },
-
-  // -- Experience
-  // Group roles by company. Multiple roles at the same company become nested entries.
-  // photo: path to an image in /public (e.g. "/companies/acme.png"), or leave "" for initial avatar
-  // bullets: list of accomplishments shown when the role is expanded
-  // tech: tools used - rendered as icon chips when expanded
   experience: [
     {
-      company:   "Freelance",
-      photo:     "",
-      roles: [
-        {
-          title:     "Software Engineer",
-          type:      "Full-Time",
-          location:  "Remote",
-          startDate: "Mar 2025",
-          endDate:   "Present",
-          bullets: [
-            "Led end-to-end development of 5+ client projects from design to deployment.",
-            "Built and shipped responsive web apps with tight deadlines and changing requirements.",
-          ],
-          tech: ["Next.js", "TypeScript", "Tailwind CSS", "Postgres"],
-        },
-      ],
+      company: "Abridge",
+      website: "",
+      links: [],
+      photo: "",
+      roles: [{
+        title: "Member of Technical Staff, Intern (Incoming)",
+        type: "Upcoming internship",
+        location: "San Francisco, CA",
+        startDate: "Jan 2027",
+        endDate: "Mar 2027",
+        bullets: ["Selected to work on production LLM systems for clinical workflows."],
+        tech: [],
+      }],
     },
     {
-      company:   "Company Name",
-      photo:     "",
-      roles: [
-        {
-          title:     "Lead Frontend Developer",
-          type:      "Full-Time",
-          location:  "City, Country",
-          startDate: "Sep 2024",
-          endDate:   "Feb 2025",
-          bullets: [
-            "Built and managed solely many internal websites including dashboards as front-end lead.",
-            "Collaborated with back-end team and explored software tools like Docker, DBeaver, etc.",
-            "Deployed projects on Vercel, Netlify, and Azure Static Web Apps.",
-          ],
-          tech: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Docker", "Vercel"],
-        },
-        {
-          title:     "Frontend Developer",
-          type:      "Internship",
-          location:  "City, Country",
-          startDate: "Jul 2024",
-          endDate:   "Sep 2024",
-          bullets: [],
-          tech:    [],
-        },
+      company: "Bruin Software Engineers",
+      website: "",
+      impactReportUrl: "https://drive.google.com/file/d/1soANLZ5IHQ46Sx1Og5H5oTQErv9WpRSm/view",
+      links: [
+        { label: "BSE GitHub", url: "https://github.com/BruinSoftwareEngineering" },
+        { label: "Terminal Trails", url: "https://termtrails.vercel.app/" },
       ],
+      photo: "",
+      roles: [{
+        title: "Founder & President",
+        type: "Student organization",
+        location: "Los Angeles, CA",
+        startDate: "Sep 2025",
+        endDate: "Present",
+        bullets: [
+          "Grew BSE to 200+ members, raised $13K from Google, Jane Street, and others, and hosted a hackathon at Google.",
+        ],
+        tech: [],
+      }],
+    },
+    {
+      company: "Arive",
+      website: "",
+      links: [],
+      photo: "",
+      roles: [{
+        title: "Software Engineering Intern",
+        type: "Internship",
+        location: "San Ramon, CA",
+        startDate: "Jun 2025",
+        endDate: "Sep 2025",
+        bullets: [
+          "Built an internal RAG assistant over 1,000+ mortgage guideline documents so developers could query policy directly.",
+        ],
+        tech: ["RAG", "Vector databases", "Cloud"],
+      }],
+    },
+    {
+      company: "Tanius Technology",
+      website: "",
+      links: [],
+      photo: "",
+      roles: [{
+        title: "Quantitative Developer Intern",
+        type: "Internship",
+        location: "Danville, CA",
+        startDate: "Jun 2023",
+        endDate: "Aug 2023",
+        bullets: [
+          "Built a futures backtesting system for 1B+ data points and cut parameter-search runtime 10x with JIT compilation.",
+        ],
+        tech: ["Python", "JIT compilation", "Time-series data"],
+      }],
     },
   ],
-
-  // -- Projects
-  // Featured projects shown on your portfolio.
-  // Leave liveUrl or githubUrl as "" to hide that button.
   projects: [
     {
-      title:     "Project Name",
-      tagline:   "Find your favourite components in seconds",
-      tech:      ["Next.js", "TypeScript", "BetterAuth", "NeonDB", "Motion"],
-      liveUrl:   "https://yourproject.com",
-      githubUrl: "https://github.com/yourusername/project",
+      title: "Accent",
+      tagline: "A macOS assistant that maps voice commands to on-screen actions for elderly users and non-English speakers. Won two LA Hacks 2026 challenges; visual element crops reduced UI selection errors by more than 30%.",
+      tech: ["Swift", "Python", "PyTorch", "ElevenLabs", "Gemini"],
+      links: [
+        { label: "Demo video", url: "https://www.youtube.com/watch?v=XmlBhFCtorw" },
+        { label: "Award coverage", url: "https://americas.aramco.com/en/news-media/news/2026/la-hacks" },
+        { label: "Devpost", url: "https://devpost.com/software/accent-cdw2qi" },
+      ],
     },
     {
-      title:     "Another Project",
-      tagline:   "Make open-source contributions and rank among developers globally",
-      tech:      ["Next.js", "Tailwind CSS", "Drizzle", "TypeScript", "NeonDB"],
-      liveUrl:   "https://anotherproject.com",
-      githubUrl: "https://github.com/yourusername/another",
+      title: "JAX Transformer Training",
+      tagline: "Implemented and trained a roughly 10-million-parameter Transformer on synthetic addition data, using a free Colab TPU to study model size and training tradeoffs.",
+      tech: ["JAX", "Python", "TPU"],
+      links: [],
+    },
+    {
+      title: "Skiing Web App",
+      tagline: "Built APIs for lift, trail, and resort status. Redis caching reduces repeated MongoDB reads; protected update endpoints use bearer-token authentication and rate limiting.",
+      tech: ["Node.js", "Express", "tRPC", "Redis", "MongoDB"],
+      links: [],
     },
   ],
 };

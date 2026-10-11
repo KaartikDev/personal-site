@@ -21,28 +21,21 @@ export function Projects() {
                 {project.tech.join("  /  ")}
               </p>
             )}
-            {(project.liveUrl || project.githubUrl) && (
-              <div className="mt-4 flex items-center gap-5 font-mono text-xs tracking-wide">
-                {project.liveUrl && (
+            {project.links.length > 0 && (
+              <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs tracking-wide">
+                {project.links.map((link, linkIndex) => (
                   <a
-                    href={project.liveUrl}
+                    key={link.url}
+                    href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-lantern underline decoration-lantern/30 underline-offset-4 hover:decoration-lantern"
+                    className={linkIndex === 0
+                      ? "text-lantern underline decoration-lantern/30 underline-offset-4 hover:decoration-lantern"
+                      : "text-slate underline decoration-tide/30 underline-offset-4 hover:text-tide dark:text-mist"}
                   >
-                    Live ↗
+                    {link.label} ↗
                   </a>
-                )}
-                {project.githubUrl && (
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-slate underline decoration-tide/30 underline-offset-4 hover:text-tide dark:text-mist"
-                  >
-                    Source ↗
-                  </a>
-                )}
+                ))}
               </div>
             )}
           </div>

@@ -279,8 +279,16 @@ export default function Waves({
           if (dist < l) {
             const s = 1 - dist / l;
             const f = Math.cos(dist * 0.001) * s;
-            p.cursor.vx += Math.cos(mouse.a) * f * l * mouse.vs * 0.00065;
-            p.cursor.vy += Math.sin(mouse.a) * f * l * mouse.vs * 0.00065;
+            p.cursor.vx += Math.cos(mouse.a) * f * l * mouse.vs * 0.0002;
+            p.cursor.vy += Math.sin(mouse.a) * f * l * mouse.vs * 0.0002;
+          }
+
+          // Keep a gentle bend around a resting cursor, not only while it moves.
+          if (mouse.set && dist < 190 && dist > 0) {
+            const falloff = (1 - dist / 190) ** 2;
+            const target = maxCursorMove * falloff * 0.22;
+            p.cursor.vx += ((dx / dist) * target - p.cursor.x) * 0.012;
+            p.cursor.vy += ((dy / dist) * target - p.cursor.y) * 0.012;
           }
 
           p.cursor.vx += (0 - p.cursor.x) * tension;
@@ -375,7 +383,22 @@ export default function Waves({
 
     setSize();
     setLines();
-    frameIdRef.current = requestAnimationFrame(tick);
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let observer: IntersectionObserver | undefined;
+    if (prefersReducedMotion) {
+      movePoints(0);
+      drawLines();
+    } else {
+      observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting && frameIdRef.current === null) {
+          frameIdRef.current = requestAnimationFrame(tick);
+        } else if (!entry.isIntersecting && frameIdRef.current !== null) {
+          cancelAnimationFrame(frameIdRef.current);
+          frameIdRef.current = null;
+        }
+      });
+      observer.observe(container);
+    }
     window.addEventListener("resize", onResize);
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("touchmove", onTouchMove, { passive: false });
@@ -384,6 +407,7 @@ export default function Waves({
       window.removeEventListener("resize", onResize);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("touchmove", onTouchMove);
+      observer?.disconnect();
       if (frameIdRef.current !== null) cancelAnimationFrame(frameIdRef.current);
     };
   }, []);

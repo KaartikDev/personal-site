@@ -10,14 +10,7 @@ export function Footer() {
         <p>
           © {year} {name}
         </p>
-        <div className="flex items-center gap-4">
-          <a href="/rss.xml" className="transition-colors hover:text-tide">
-            RSS
-          </a>
-          <a href="/sitemap.xml" className="transition-colors hover:text-tide">
-            Sitemap
-          </a>
-        </div>
+
       </div>
       <p className="mt-3">
         Designed by{" "}

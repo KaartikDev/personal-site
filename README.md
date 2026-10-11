@@ -1,15 +1,15 @@
 # Waves Portfolio Template
 
-A config-driven developer portfolio built with Next.js 16, React 19, and Tailwind CSS 4, set against an interactive animated wave background (ported from [reactbits.dev/backgrounds/waves](https://reactbits.dev/backgrounds/waves)).
+A config-driven developer portfolio built with Next.js 16, React 19, and Tailwind CSS 4. A short animated wave treatment behind the name is adapted from [reactbits.dev/backgrounds/waves](https://reactbits.dev/backgrounds/waves).
 
-The visual identity leans into the background rather than covering it up: a terminal-flavored read of open water at night, with a wonky serif display face for headlines, a mono "readout" utility face for labels and data, and no card chrome anywhere - no boxes, no pill badges, no bordered panels. Content sits directly on the waves in a single left-anchored column, organized purely by big type and hairline rules, so the water stays visible on every screen.
+The page uses a serif display face for headlines and a mono face for labels. The wave effect fades out below the name, leaving a solid background for the About, experience, and project sections.
 
 The goal is simple: edit one config file, ship a polished personal site, and avoid rewriting components every time your work history, projects, or links change.
 
 ## Features
 
 - Config-first content in `config/config.ts`
-- Full-screen animated wave background that reacts to your cursor (or touch on mobile), left fully visible with no cards or panels laid over it
+- Animated waves behind the name that fade into a solid page background and pause when offscreen
 - Sections organized with large display-type headings and hairline rules instead of boxes, badges, or chips
 - Light and dark theme toggle (a plain `[DAY / NIGHT]` text switch) with local preference persistence; wave color adapts automatically
 - Rich bio formatting with inline emphasis and a drop-cap opening line
@@ -142,13 +142,15 @@ projects: [
     title: "Project Name",
     tagline: "A short, specific line about what it does",
     tech: ["Next.js", "TypeScript", "NeonDB"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/yourusername/project",
+    links: [
+      { label: "Project site", url: "https://example.com" },
+      { label: "Source", url: "https://github.com/yourusername/project" },
+    ],
   },
 ],
 ```
 
-Leave `liveUrl` or `githubUrl` blank to hide that link.
+Use an empty `links` array when a project has no public links.
 
 ### The Wave Background and Palette
 
