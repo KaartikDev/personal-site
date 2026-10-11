@@ -61,7 +61,7 @@ export const config = {
         startDate: "Jun 2025",
         endDate: "Sep 2025",
         bullets: [
-          "Built an internal RAG assistant over 1,000+ mortgage guideline documents so developers could query policy directly.",
+          "Built an internal RAG assistant over documents so developers could quickly find policy answers.",
         ],
         tech: ["RAG", "Vector databases", "Cloud"],
       }],
