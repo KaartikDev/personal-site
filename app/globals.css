@@ -70,7 +70,7 @@ body {
   }
 }
 
-/* The content begins on a solid surface; the 2rem gap after the name is the transition. */
+/* The last 2rem between the name and About fades into a solid surface. */
 .plain-content::before {
   content: "";
   position: absolute;
