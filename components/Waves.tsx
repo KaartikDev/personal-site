@@ -362,9 +362,10 @@ export default function Waves({
     }
     function updateMouse(x: number, y: number) {
       const mouse = mouseRef.current;
-      const b = boundingRef.current;
-      mouse.x = x - b.left;
-      mouse.y = y - b.top;
+      const bounds = container?.getBoundingClientRect();
+      if (!bounds) return;
+      mouse.x = x - bounds.left;
+      mouse.y = y - bounds.top;
       if (!mouse.set) {
         mouse.sx = mouse.x;
         mouse.sy = mouse.y;

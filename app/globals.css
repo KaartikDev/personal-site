@@ -38,11 +38,6 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #f3f4ef;
-}
-
-html.dark {
-  background-color: #0a0c0a;
 }
 
 body {

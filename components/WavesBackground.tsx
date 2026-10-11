@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Waves from "@/components/Waves";
 import { useIsDarkMode } from "@/lib/use-dark-mode";
 
@@ -12,18 +13,38 @@ const LINE_COLOR = {
 
 export function WavesBackground() {
   const dark = useIsDarkMode();
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let frame = 0;
+    const updatePosition = () => {
+      frame = 0;
+      // Follow normal scrolling, but stay in place when the page bounces past the top.
+      if (wrapperRef.current) {
+        const offset = Math.min(wrapperRef.current.offsetHeight, Math.max(0, window.scrollY));
+        wrapperRef.current.style.transform = `translate3d(0, -${offset}px, 0)`;
+      }
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(updatePosition);
+    };
+
+    updatePosition();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, []);
 
   return (
-    // Keep the canvas above the document so elastic scrolling reveals more waves.
-    // The fade still ends at the original 14rem mark below the page top.
     <div
-      className="pointer-events-none absolute inset-x-0 z-0 overflow-hidden"
+      ref={wrapperRef}
+      className="pointer-events-none fixed inset-x-0 top-0 z-0 h-56 overflow-hidden"
       aria-hidden="true"
       style={{
-        top: "-50vh",
-        height: "calc(50vh + 14rem)",
-        maskImage: "linear-gradient(to bottom, black calc(100% - 4.5rem), transparent 100%)",
-        WebkitMaskImage: "linear-gradient(to bottom, black calc(100% - 4.5rem), transparent 100%)",
+        maskImage: "linear-gradient(to bottom, black 0%, black 68%, transparent 100%)",
+        WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 68%, transparent 100%)",
       }}
     >
       <Waves
