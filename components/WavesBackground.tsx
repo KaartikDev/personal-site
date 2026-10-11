@@ -14,12 +14,16 @@ export function WavesBackground() {
   const dark = useIsDarkMode();
 
   return (
+    // Keep the canvas above the document so elastic scrolling reveals more waves.
+    // The fade still ends at the original 14rem mark below the page top.
     <div
-      className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-56 overflow-hidden"
+      className="pointer-events-none absolute inset-x-0 z-0 overflow-hidden"
       aria-hidden="true"
       style={{
-        maskImage: "linear-gradient(to bottom, black 0%, black 68%, transparent 100%)",
-        WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 68%, transparent 100%)",
+        top: "-50vh",
+        height: "calc(50vh + 14rem)",
+        maskImage: "linear-gradient(to bottom, black calc(100% - 4.5rem), transparent 100%)",
+        WebkitMaskImage: "linear-gradient(to bottom, black calc(100% - 4.5rem), transparent 100%)",
       }}
     >
       <Waves
