@@ -33,7 +33,7 @@ export const config = {
       website: "",
       impactReportUrl: "https://drive.google.com/file/d/1soANLZ5IHQ46Sx1Og5H5oTQErv9WpRSm/view",
       links: [
-        { label: "BSE GitHub", url: "https://github.com/BruinSoftwareEngineering" },
+        { label: "BSE GitHub", url: "https://github.com/bse-at-ucla" },
         { label: "Terminal Trails", url: "https://termtrails.vercel.app/" },
       ],
       photo: "",
