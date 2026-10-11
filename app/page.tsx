@@ -13,8 +13,10 @@ export default function Home() {
       </div>
 
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-16 px-6 pb-16 pt-8 sm:px-10 sm:pb-24 sm:pt-14 lg:px-0">
-        <PageHeader />
-        <Bio />
+        <div className="space-y-8">
+          <PageHeader />
+          <Bio />
+        </div>
         <Experience />
         <Projects />
         <Footer />
