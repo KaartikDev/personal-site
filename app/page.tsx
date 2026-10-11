@@ -12,7 +12,7 @@ export default function Home() {
         <ThemeToggle />
       </div>
 
-      <div className="mx-auto flex w-full max-w-3xl flex-col gap-12 px-6 pb-16 pt-8 sm:px-10 sm:pb-24 sm:pt-14 lg:px-0">
+      <div className="mx-auto flex w-full max-w-3xl flex-col gap-16 px-6 pb-16 pt-8 sm:px-10 sm:pb-24 sm:pt-14 lg:px-0">
         <PageHeader />
         <main className="plain-content relative isolate z-10 flex flex-col gap-16">
           <Bio />

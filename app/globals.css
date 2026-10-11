@@ -70,18 +70,18 @@ body {
   }
 }
 
-/* The last 2rem between the name and About fades into a solid surface. */
+/* The last 3rem between the name and About fades into a solid surface. */
 .plain-content::before {
   content: "";
   position: absolute;
   z-index: -1;
-  top: -2rem;
+  top: -3rem;
   bottom: 0;
   left: 50%;
   width: 100vw;
   transform: translateX(-50%);
   pointer-events: none;
-  background: linear-gradient(to bottom, transparent, var(--page-surface) 2rem);
+  background: linear-gradient(to bottom, transparent, var(--page-surface) 3rem);
 }
 
 /* Waves background canvas - see components/Waves.tsx */
