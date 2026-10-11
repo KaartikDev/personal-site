@@ -40,7 +40,7 @@ export function WavesBackground() {
   return (
     <div
       ref={wrapperRef}
-      className="wave-background pointer-events-none fixed inset-x-0 top-0 z-0 h-96 overflow-hidden sm:h-56"
+      className="wave-background pointer-events-none fixed inset-x-0 top-0 z-0 h-56 overflow-hidden"
       aria-hidden="true"
     >
       <Waves

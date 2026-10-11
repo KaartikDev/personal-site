@@ -12,11 +12,13 @@
 :root {
   --tide: #157a4c;
   --lantern: #92400e;
+  --page-surface: #f3f4ef;
 }
 
 .dark {
   --tide: #39e67d;
   --lantern: #ffb454;
+  --page-surface: #0a0c0a;
 }
 
 @theme inline {
@@ -68,10 +70,24 @@ body {
   }
 }
 
+/* The content begins on a solid surface; the 2rem gap after the name is the transition. */
+.plain-content::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -2rem;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--page-surface) 2rem);
+}
+
 /* Waves background canvas - see components/Waves.tsx */
 .wave-background {
-  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 35%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 0%, black 35%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
 }
 
 @media (min-width: 640px) {
