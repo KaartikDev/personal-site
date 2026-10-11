@@ -8,7 +8,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 export default function Home() {
   return (
     <div className="relative z-0 min-h-screen">
-      <div className="fixed right-6 top-6 z-30 sm:right-10 sm:top-10">
+      <div className="absolute right-6 top-6 z-30 sm:right-10 sm:top-10">
         <ThemeToggle />
       </div>
 

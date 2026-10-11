@@ -40,12 +40,8 @@ export function WavesBackground() {
   return (
     <div
       ref={wrapperRef}
-      className="pointer-events-none fixed inset-x-0 top-0 z-0 h-56 overflow-hidden"
+      className="wave-background pointer-events-none fixed inset-x-0 top-0 z-0 h-96 overflow-hidden sm:h-56"
       aria-hidden="true"
-      style={{
-        maskImage: "linear-gradient(to bottom, black 0%, black 68%, transparent 100%)",
-        WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 68%, transparent 100%)",
-      }}
     >
       <Waves
         lineColor={dark ? LINE_COLOR.dark : LINE_COLOR.light}
