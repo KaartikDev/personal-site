@@ -87,7 +87,7 @@ export const config = {
   projects: [
     {
       title: "Accent",
-      tagline: "A macOS assistant that maps voice commands to on-screen actions for elderly users and non-English speakers. Won two LA Hacks 2026 challenges; visual element crops reduced UI selection errors by more than 30%.",
+      tagline: "A macOS assistant that maps voice commands to on-screen actions for elderly users and non-English speakers. I won two tracks at LA Hacks 2026 (1,000+ hackers); visual element crops reduced UI selection errors by more than 30%.",
       tech: ["Swift", "Python", "PyTorch", "ElevenLabs", "Gemini"],
       links: [
         { label: "Demo video", url: "https://www.youtube.com/watch?v=XmlBhFCtorw" },
