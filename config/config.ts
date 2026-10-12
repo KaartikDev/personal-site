@@ -1,7 +1,7 @@
 export const config = {
   name: "Kaartik Tejwani",
   bio: [
-    "I'm a CS student at UCLA who loves building things. I started Bruin Software Engineers to help students learn through projects and connect with working engineers. Recently, my team won two challenges at LA Hacks (1,000+ hackers) with Accent, an accessibility assistant for elderly users and non-English speakers built with Gemini 3.1.",
+    "I'm a CS student at UCLA who loves building things. I started Bruin Software Engineers to help students adapt as generative AI changes software engineering, build real projects, and connect with working engineers. Recently, my team won two challenges at LA Hacks (1,000+ hackers) with Accent, an accessibility assistant for elderly users and non-English speakers built with Gemini 3.1.",
   ],
   cta: "Email me if you'd like to work together.",
   social: {
